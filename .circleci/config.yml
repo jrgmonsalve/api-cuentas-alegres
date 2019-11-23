@@ -48,10 +48,12 @@ jobs:
     machine:
       enabled: true
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "2f:06:c1:21:bc:ea:3a:22:b4:e8:a8:9f:68:b1:ca:22"
       - run:
           name: Deploy Over SSH
-          command: |
-            ssh webap@45.32.164.157 "cd api-cuentas-alegres/; git pull"
+          command: ssh $SSH_USER@$SSH_HOST "cd api-cuentas-alegres/; git pull"
 workflows:
   version: 2
   build-and-deploy:

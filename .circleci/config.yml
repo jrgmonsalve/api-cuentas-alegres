@@ -51,6 +51,9 @@ jobs:
           fingerprints:
             - "2f:06:c1:21:bc:ea:3a:22:b4:e8:a8:9f:68:b1:ca:22"
       - run:
+          name: fix host authenticity for production server
+          command: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+      - run:
           name: Deploy Over SSH
           command: ssh $SSH_USER@$SSH_HOST "cd api-cuentas-alegres/; git pull"
 workflows:
